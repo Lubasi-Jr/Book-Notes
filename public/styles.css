@@ -1,0 +1,148 @@
+body {
+  background-color: #fff8e8;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.title img {
+  width: 20%;
+  height: 40%;
+}
+.title h1 {
+  color: black;
+  font-size: 3rem;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+}
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
+  color: #674636;
+  font-size: 3em;
+}
+
+.eb-garamond {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.more {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  color: #674636;
+  margin-bottom: 50px;
+}
+.more:hover {
+  color: #4d3627;
+}
+
+.svg-icon {
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+}
+
+.sorts {
+  display: inline;
+  margin-right: 30px;
+  opacity: 0.7;
+}
+
+.trash {
+  background-color: #ff0000; /* Red background */
+  border: none; /* No border */
+  color: #ffffff; /* White text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.trash:hover {
+  background-color: #cc0000; /* Darker red on hover */
+  cursor: pointer;
+}
+
+.trash img {
+  filter: invert(1); /* Makes the SVG white if it's black by default */
+}
+
+.pencil {
+  border-color: #674636; /* Custom outline color (red) */
+  color: #674636;
+}
+
+.pencil:hover {
+  background-color: #674636; /* Red background on hover */
+  color: #ffffff; /* White text on hover */
+  border-color: #674636;
+}
+
+.create {
+  cursor: pointer; /* Changes cursor to hand when hovering */
+  font-size: 24px; /* Adjust font size as needed */
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  padding: 0; /* Remove button padding */
+  margin: 0; /* Remove default margin */
+  font-family: "Raleway", sans-serif; /* Inherit font from parent */
+  color: #674636;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sort {
+  padding: 0; /* Remove button padding */
+  margin: 0; /* Remove default margin */
+  font-family: "Raleway", sans-serif; /* Inherit font from parent */
+  color: #674636;
+  font-size: 24px;
+}
+
+.sort-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.button-group {
+  display: flex;
+  gap: 25px;
+}
+.sort-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.sort-button img {
+  width: 35px; /* Adjust SVG size if needed */
+  height: 50px;
+}

@@ -1,0 +1,61 @@
+<section class="header">
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <!-- The URL for images is  https://covers.openlibrary.org/b/ISBN/9780008375010-L.jpg -->
+      <div class="col-10 col-sm-8 col-lg-6"></div>
+      <div class="col-lg-6 title">
+        <!--  display-5 fw-bold text-body-emphasis raleway lh-1 mb-3 -->
+        <img src="books-stack-of-three-svgrepo-com.svg" />
+        <h1 class="eb-garamond">Bookmark Chronicles</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sortout">
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6 sort-container"></div>
+      <div class="col-lg-6 create-container">
+        <!--  Button for creating a post -->
+        <form action="" method="POST">
+          <button type="submit" class="create">
+            <img src="plus-large-svgrepo-com (1).svg" class="svg-icon" />Create
+            post
+          </button>
+        </form>
+
+        <div class="sort">Sort Items</div>
+
+        <!-- Button group for sorting -->
+        <div class="button-group">
+          <form action="/sort" method="GET">
+            <button class="sort-button" id="ascending" name="sort">
+              <img src="ascending.svg" alt="ascending" />
+            </button>
+          </form>
+          <!-- Button for descending. Each button wrapped in a form to allow the get request to be called -->
+          <form action="/sort" method="GET">
+            <button class="sort-button" id="descending" name="sort">
+              <img src="descending.svg" alt="descending" />
+            </button>
+          </form>
+          <!-- Button for Date sort. Each button wrapped in a form to allow the get request to be called -->
+          <form action="/sort" method="GET">
+            <button class="sort-button" id="date" name="sort">
+              <img src="date-range-svgrepo-com.svg" alt="date" />
+            </button>
+          </form>
+
+          <!-- Button for Rating sort. Each button wrapped in a form to allow the get request to be called -->
+          <form action="/sort" method="GET">
+            <button class="sort-button" id="rating" name="sort">
+              <img src="star-svgrepo-com.svg" alt="rating" />
+            </button>
+          </form>
+          <!-- Add more buttons as needed -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

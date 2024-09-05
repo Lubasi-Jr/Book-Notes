@@ -1,6 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -8,8 +11,8 @@ const port = 3000;
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "permalist",
-  password: "123456",
+  database: "book_notes",
+  password: process.env.postgresPassword,
   port: 5432,
 });
 db.connect();
@@ -17,14 +20,55 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let books = [];
+let latestBooks = [];
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+async function currentDate() {
+  const today = new Date();
+  const ukDate = today.toLocaleDateString("en-GB"); // en-GB is the locale for the United Kingdom
+  // Example: 04/09/2024 (DD/MM/YYYY)
+  return ukDate;
+}
+
+//Function to get the latest books from the database.
+async function latest() {
+  const result = await db.query("SELECT * FROM books");
+  //Updates the latest books array, which is parsed in the EJS file
+  latestBooks = result.rows;
+}
+
+app.get("/", async (req, res) => {
+  await latest();
+  res.render("index.ejs", { books: latestBooks });
 });
 
 app.post("/create", (req, res) => {
   res.render("create_post.ejs");
+});
+
+app.post("/submit", async (req, res) => {
+  const isbn = req.body.isbn;
+  const title = req.body.title;
+  const rating = req.body.rating;
+  const details = req.body.details;
+  //make function calls to get the current date
+  const day = await currentDate();
+  //For the image, make API call to Open Library
+  const image = `https://covers.openlibrary.org/b/ISBN/${isbn}-L.jpg`;
+
+  //console.log("ISBN entered: " + isbn);
+  //console.log("Details: " + details);
+
+  //Perform the insert query in a try-catch block
+
+  try {
+    await db.query(
+      "INSERT INTO books (isbn,title,rating,details,date_read,image_url) VALUES ($1, $2, $3, $4, $5, $6)",
+      [isbn, title, rating, details, day, image]
+    );
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(port, () => {

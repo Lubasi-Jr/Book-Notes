@@ -28,3 +28,15 @@ body {
   font-style: normal;
   color: #674636;
 }
+
+.btn {
+  font-family: "Raleway", sans-serif;
+  color: #fff8e8;
+  background-color: #674636;
+  border-color: #674636;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #8a5b48;
+}

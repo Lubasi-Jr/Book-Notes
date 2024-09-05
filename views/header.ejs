@@ -30,26 +30,31 @@
         <!-- Button group for sorting -->
         <div class="button-group">
           <form action="/sort" method="GET">
-            <button class="sort-button" id="ascending" name="sort">
+            <button class="sort-button" id="ascending" name="sort" value="ASC">
               <img src="ascending.svg" alt="ascending" />
             </button>
           </form>
           <!-- Button for descending. Each button wrapped in a form to allow the get request to be called -->
           <form action="/sort" method="GET">
-            <button class="sort-button" id="descending" name="sort">
+            <button
+              class="sort-button"
+              id="descending"
+              name="sort"
+              value="DESC"
+            >
               <img src="descending.svg" alt="descending" />
             </button>
           </form>
           <!-- Button for Date sort. Each button wrapped in a form to allow the get request to be called -->
           <form action="/sort" method="GET">
-            <button class="sort-button" id="date" name="sort">
+            <button class="sort-button" id="date" name="sort" value="DATE">
               <img src="date-range-svgrepo-com.svg" alt="date" />
             </button>
           </form>
 
           <!-- Button for Rating sort. Each button wrapped in a form to allow the get request to be called -->
           <form action="/sort" method="GET">
-            <button class="sort-button" id="rating" name="sort">
+            <button class="sort-button" id="rating" name="sort" value="RATING">
               <img src="star-svgrepo-com.svg" alt="rating" />
             </button>
           </form>

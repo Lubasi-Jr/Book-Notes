@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 let latestBooks = [];
+let sortedLatest = [];
 
 async function currentDate() {
   const today = new Date();
@@ -34,6 +35,35 @@ async function latest() {
   const result = await db.query("SELECT * FROM books");
   //Updates the latest books array, which is parsed in the EJS file
   latestBooks = result.rows;
+}
+
+//Function to get the latest books in the specified sorting method
+async function sorted(criteria) {
+  let result; // Use let instead of const here
+  switch (criteria) {
+    case "ASC":
+      result = await db.query("SELECT * FROM books ORDER BY title ASC");
+      sortedLatest = result.rows;
+      break;
+    case "DESC":
+      result = await db.query("SELECT * FROM books ORDER BY title DESC");
+      sortedLatest = result.rows;
+      break;
+    case "DATE":
+      result = await db.query(
+        "SELECT * FROM books ORDER BY TO_DATE(date_read, 'DD/MM/YYYY') DESC"
+      );
+      sortedLatest = result.rows;
+      break;
+    case "RATING":
+      result = await db.query("SELECT * FROM books ORDER BY rating DESC");
+      sortedLatest = result.rows;
+      break;
+    default:
+      // Handle unexpected criteria
+      console.error("Invalid sorting criteria:", criteria);
+      sortedLatest = latestBooks; // Just send the latest books (unsorted)
+  }
 }
 
 app.get("/", async (req, res) => {
@@ -92,6 +122,19 @@ app.post("/edit", async (req, res) => {
   const isbn = req.body.isbn;
   console.log(`ISBN to be edited: ${isbn}`);
   res.redirect("/");
+});
+
+//get request for getting the home page but sorted
+app.get("/sort", async (req, res) => {
+  const sortBy = req.query.sort;
+  //Function call to perform sorting. Remember to give functions single responsibility
+  await sorted(sortBy);
+  //sortedLatest variable has been updated. We can now go ahead and render it
+
+  //console.log(sortedLatest);
+  //res.redirect("/");
+
+  res.render("index.ejs", { books: sortedLatest });
 });
 
 app.listen(port, () => {

@@ -67,8 +67,31 @@ app.post("/submit", async (req, res) => {
     );
     res.redirect("/");
   } catch (err) {
+    //Possible errors would be duplicate entry or invalid field type. Therefore just log error and redirect
     console.log(err);
+    res.redirect("/");
   }
+});
+
+//Method for deleting
+app.post("/delete", async (req, res) => {
+  const isbn = req.body.isbn;
+
+  try {
+    await db.query("DELETE FROM books WHERE isbn = $1", [isbn]);
+    console.log(`Successfully deleted: ${isbn}`);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    res.redirect("/");
+  }
+});
+
+//Method for editing
+app.post("/edit", async (req, res) => {
+  const isbn = req.body.isbn;
+  console.log(`ISBN to be edited: ${isbn}`);
+  res.redirect("/");
 });
 
 app.listen(port, () => {

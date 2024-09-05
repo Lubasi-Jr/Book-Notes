@@ -55,19 +55,34 @@
           <a href="#" class="more">Your notes ></a>
           <!-- Update href as needed -->
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button
-              type="button"
-              class="btn btn-outline-secondary pencil btn-lg px-4"
-            >
-              <img src="pencil.svg" alt="Pencil for editing" class="svg-icon" />
-            </button>
-
-            <button
-              type="button"
-              class="btn btn-secondary no-border trash btn-lg px-4"
-            >
-              <img src="trash.svg" alt="Trash for deleting" class="svg-icon" />
-            </button>
+            <form action="/edit" method="post">
+              <button
+                type="submit"
+                name="isbn"
+                value="<%= book.isbn %>"
+                class="btn btn-outline-secondary pencil btn-lg px-4"
+              >
+                <img
+                  src="pencil.svg"
+                  alt="Pencil for editing"
+                  class="svg-icon"
+                />
+              </button>
+            </form>
+            <form action="/delete" method="post">
+              <button
+                type="submit"
+                name="isbn"
+                value="<%= book.isbn %>"
+                class="btn btn-secondary no-border trash btn-lg px-4"
+              >
+                <img
+                  src="trash.svg"
+                  alt="Trash for deleting"
+                  class="svg-icon"
+                />
+              </button>
+            </form>
           </div>
         </div>
       </div>

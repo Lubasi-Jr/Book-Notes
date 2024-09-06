@@ -22,6 +22,7 @@ app.use(express.static("public"));
 
 let latestBooks = [];
 let sortedLatest = [];
+let bookToBeEdited; //Temporary variable to store the book to be edited
 
 async function currentDate() {
   const today = new Date();
@@ -121,7 +122,40 @@ app.post("/delete", async (req, res) => {
 app.post("/edit", async (req, res) => {
   const isbn = req.body.isbn;
   console.log(`ISBN to be edited: ${isbn}`);
-  res.redirect("/");
+
+  try {
+    //Particular book gets retrieved and rendered for editng purposes
+    const result = await db.query("SELECT * FROM books WHERE isbn = $1", [
+      isbn,
+    ]);
+
+    bookToBeEdited = isbn; //To be used as a reference in the modify route
+    res.render("create_post.ejs", { editBook: result.rows[0] });
+  } catch (err) {
+    console.log(err);
+    res.redirect("/");
+  }
+});
+
+app.post("/modify", async (req, res) => {
+  const isbn = req.body.isbn;
+  const title = req.body.title;
+  const rating = req.body.rating;
+  const details = req.body.details;
+
+  const image = `https://covers.openlibrary.org/b/ISBN/${isbn}-L.jpg`;
+
+  try {
+    await db.query(
+      "UPDATE books SET isbn = $1, title = $2, rating = $3, details = $4, image_url = $5 WHERE isbn = $6",
+      [isbn, title, rating, details, image, bookToBeEdited]
+    );
+    //Return back to the home page
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    res.redirect("/");
+  }
 });
 
 //get request for getting the home page but sorted

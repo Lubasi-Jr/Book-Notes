@@ -28,57 +28,138 @@
   </head>
   <body>
     <!-- Form needs to be duplicated. One for Creating a post and another for editing an existing post -->
-    <h1 class="raleway">Create Post</h1>
-    <div class="create-post">
-      <form action="/submit" method="POST">
-        <div class="form-group">
-          <label for="title" class="eb-garamond">Title:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-            name="title"
-            placeholder="Book title..."
-            required
-            value=""
+    <div class="back-container">
+      <a class="anchor-tag" href="/">
+        <div class="homepage">
+          <img
+            src="left-arrow-svgrepo-com.svg"
+            alt="left arrow"
+            class="lef-arrow"
+            height="30px"
+            width="30px"
           />
+          <div class="homepage">
+            <h3 class="back-button">Back</h3>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="isbn" class="eb-garamond">ISBN:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="isbn"
-            name="isbn"
-            placeholder=""
-            required
-            pattern="\d+"
-          />
-        </div>
-        <div class="form-group">
-          <label for="rating" class="eb-garamond">Rating (1 to 10):</label>
-          <input
-            class="form-control"
-            type="number"
-            id="rating"
-            name="rating"
-            min="1"
-            max="10"
-            required
-          />
-        </div>
+      </a>
+    </div>
+    <div class="container">
+      <% if (locals.editBook) { %>
+      <h1 class="raleway">Edit post</h1>
+      <div class="create-post">
+        <form action="/modify" method="POST">
+          <div class="form-group">
+            <label for="title" class="eb-garamond">Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              placeholder="Book title..."
+              required
+              value="<%= editBook.title %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="isbn" class="eb-garamond">ISBN:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="isbn"
+              name="isbn"
+              placeholder=""
+              value="<%= editBook.isbn %>"
+              required
+              pattern="\d+"
+            />
+          </div>
+          <div class="form-group">
+            <label for="rating" class="eb-garamond">Rating (1 to 10):</label>
+            <input
+              class="form-control"
+              type="number"
+              id="rating"
+              name="rating"
+              value="<%= editBook.rating %>"
+              min="1"
+              max="10"
+              step="0.1"
+              required
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="details" class="eb-garamond">Details:</label>
-          <textarea
-            class="form-control"
-            id="details"
-            name="details"
-            rows="3"
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-secondary">Submit</button>
-      </form>
+          <div class="form-group">
+            <label for="details" class="eb-garamond">Details:</label>
+            <textarea
+              class="form-control"
+              id="details"
+              name="details"
+              rows="15"
+            >
+            <%= editBook.details %></textarea
+            >
+          </div>
+          <button type="submit" class="btn btn-secondary">Save</button>
+        </form>
+      </div>
+
+      <% } else { %>
+
+      <h1 class="raleway">Create Post</h1>
+      <div class="create-post">
+        <form action="/submit" method="POST">
+          <div class="form-group">
+            <label for="title" class="eb-garamond">Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              placeholder="Book title..."
+              required
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <label for="isbn" class="eb-garamond">ISBN:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="isbn"
+              name="isbn"
+              placeholder=""
+              required
+              pattern="\d+"
+            />
+          </div>
+          <div class="form-group">
+            <label for="rating" class="eb-garamond">Rating (1 to 10):</label>
+            <input
+              class="form-control"
+              type="number"
+              id="rating"
+              name="rating"
+              min="1"
+              max="10"
+              step="0.1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="details" class="eb-garamond">Details:</label>
+            <textarea
+              class="form-control"
+              id="details"
+              name="details"
+              rows="15"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+      </div>
+      <% } %>
     </div>
 
     <script

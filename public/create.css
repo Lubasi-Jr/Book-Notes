@@ -1,13 +1,16 @@
-body {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 80vh;
   background-color: #fff8e8;
-  margin-top: 100px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
-
+body {
+  background-color: #fff8e8;
+}
 .create-post {
   width: 60%;
   height: 100%;
@@ -39,4 +42,35 @@ body {
 
 .btn:hover {
   background-color: #8a5b48;
+}
+
+.back-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.back-button {
+  font-family: "Raleway", sans-serif;
+  color: #674636;
+}
+
+.anchor-tag {
+  margin-left: 30px;
+  margin-top: 50px;
+  text-decoration: none;
+}
+
+.anchor-tag:hover {
+  cursor: pointer;
+}
+
+.homepage {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-arrow {
+  display: inline;
 }

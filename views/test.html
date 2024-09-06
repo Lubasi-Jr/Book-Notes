@@ -29,52 +29,74 @@
     <title>Create Book</title>
   </head>
   <body>
-    <h1 class="raleway">Create Post</h1>
-    <div class="create-post">
-      <form>
-        <div class="form-group">
-          <label for="title" class="eb-garamond">Title:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-            name="title"
-            placeholder="Book title..."
-            required
-            value=""
+    <div class="back-container">
+      <a class="anchor-tag" href="/">
+        <div class="homepage">
+          <img
+            src="../public/left-arrow-svgrepo-com.svg"
+            alt="left arrow"
+            class="lef-arrow"
+            height="30px"
+            width="30px"
           />
+          <div class="homepage">
+            <h3 class="back-button">Back</h3>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="isbn" class="eb-garamond">ISBN:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="isbn"
-            placeholder=""
-            required
-            pattern="\d+"
-          />
-        </div>
-        <div class="form-group">
-          <label for="rating" class="eb-garamond">Rating (1 to 10):</label>
-          <input
-            class="form-control"
-            type="number"
-            id="rating"
-            name="rating"
-            min="1"
-            max="10"
-            required
-          />
-        </div>
+      </a>
+    </div>
+    <div class="container">
+      <h1 class="raleway">Create Post</h1>
+      <div class="create-post">
+        <form>
+          <div class="form-group">
+            <label for="title" class="eb-garamond">Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              placeholder="Book title..."
+              required
+              value=""
+            />
+          </div>
+          <div class="form-group">
+            <label for="isbn" class="eb-garamond">ISBN:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="isbn"
+              placeholder=""
+              required
+              pattern="\d+"
+            />
+          </div>
+          <div class="form-group">
+            <label for="rating" class="eb-garamond">Rating (1 to 10):</label>
+            <input
+              class="form-control"
+              type="number"
+              id="rating"
+              name="rating"
+              min="1"
+              max="10"
+              required
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="description" class="eb-garamond">Description:</label>
-          <textarea class="form-control" id="description" rows="3"></textarea>
-        </div>
+          <div class="form-group">
+            <label for="description" class="eb-garamond">Description:</label>
+            <textarea
+              class="form-control"
+              id="description"
+              rows="15"
+            ></textarea>
+          </div>
 
-        <button type="submit" class="btn btn-secondary">Submit</button>
-      </form>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+      </div>
     </div>
 
     <script
